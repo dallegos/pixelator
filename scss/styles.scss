@@ -1,0 +1,26 @@
+* {
+  user-select: none;
+  appearance: none;
+  background-clip: padding-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // align-content: center;
+  height: 100vh;
+}
+
+.pokemon {
+  width: 0.8rem;
+  height: 0.8rem;
+  //transform: translate3d(-20px, -20px, 0);
+  //transition: box-shadow 4s ease;
+}
+
+@import "cleaner";
+@import "pokemons/index";
