@@ -13,7 +13,9 @@ const Inicio = () => {
 
   return (
     <>
-      <div className="grid">{!pokemonList.length ? null : cards}</div>
+      <div className="homeContainer">
+        <div className="grid">{!pokemonList.length ? null : cards}</div>
+      </div>
     </>
   );
 };
