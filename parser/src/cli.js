@@ -35,10 +35,8 @@ class ParseImage {
   };
 
   constructor(options) {
-    console.log(options);
-
     this.options = options;
-    this.canvas = createCanvas(1200, 1200);
+    this.canvas = createCanvas(this.grid.rows * 10, this.grid.cols * 10);
     this.context = this.canvas.getContext("2d");
     this.context.imageSmoothingEnabled = false;
 
@@ -51,15 +49,20 @@ class ParseImage {
       throw new Error("no se pudo cargar la imagen");
     };
 
-    console.log("INPUT", path.resolve(options.input));
     image.src = path.resolve(options.input);
   }
 
   processImage = (image) => {
     this.map.length = 0;
 
+    this.context.fillStyle = "#ffffff";
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.scale(10, 10);
-    this.context.drawImage(image, 0, 0, image.width, image.height);
+
+    const x = Number.parseInt(this.canvas.width - image.width * 10) / 2;
+    const y = Number.parseInt(this.canvas.height - image.height * 10) / 2;
+
+    this.context.drawImage(image, x / 10, y / 10, image.width, image.height);
 
     for (let row = 1; row <= this.grid.rows; row++) {
       for (let col = 1; col <= this.grid.cols; col++) {
@@ -76,7 +79,7 @@ class ParseImage {
   };
 
   createFile = () => {
-    let text = "";
+    let text = '@import  "../pixelart";\n\n';
     let looper = 0;
 
     let listColors = "\n$colors: (\n";
@@ -107,14 +110,14 @@ class ParseImage {
     text += "$pokemon:\n";
     text += shadows.slice(0, -2) + ";";
 
-    text += `\n\n.pokemon.${this.options.name} {\n`;
+    text += `\n\n.${this.options.name} {\n`;
     text += "\tbox-shadow: pixelart($pokemon);\n";
     text += "}\n";
 
-    let output = this.options.output || `"./pokemon-${this.options.name}.scss}`;
+    let output = this.options.output || `"./${this.options.name}.scss`;
 
     if (this.options.folder !== "") {
-      output = `${output}/_${this.options.name}.scss`;
+      output = `${output}/${this.options.name}.scss`;
     }
 
     output = path.resolve(output);
@@ -160,8 +163,6 @@ const parseArguments = (rawArgs) => {
     }
   );
 
-  //if (!args._[0]) throw new Error("necesitas indicar la imagen a procesar");
-
   return {
     help: args["--help"] || false,
     name: args["--name"] || `pokemon-${nanoid(10)}`,
@@ -186,7 +187,7 @@ export const cli = (args) => {
       }
 
       images.forEach(function (image) {
-        const name = `pokemon-${image.split(".")[0]}`;
+        const name = `${image.split(".")[0]}`;
         new ParseImage({
           ...options,
           name,

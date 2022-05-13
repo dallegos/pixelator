@@ -1,0 +1,25 @@
+$grid: 56;
+
+@function pixelart($list, $shadow-count: $grid) {
+  $shadows: ();
+  $row: 0;
+  $col: 1;
+
+  @for $i from 1 through length($list) {
+    @if(nth($list, $i) > 0) {
+      $shadows: append($shadows,
+          ($col * (0.4rem - 0.04rem)) ($row * (0.4rem - 0.04rem)) 0 map-get($colors, nth($list, $i)),
+          'comma'
+        );
+    }
+
+    @if($i % $grid==0) {
+      $row: $row + 1;
+      $col: 0;
+    }
+
+    $col: $col+1;
+  }
+
+  @return $shadows;
+}
