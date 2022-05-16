@@ -1,0 +1,16 @@
+
+.homeContainer {
+  width: 100vw;
+  height: 100vh;
+
+  .grid {
+    position: relative;
+    margin: 10vh auto;
+    width: 800px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    grid-auto-rows: minmax(150px, auto);
+  }
+}

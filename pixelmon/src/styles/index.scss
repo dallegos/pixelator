@@ -1,13 +1,5 @@
 @import-normalize;
-
-$box-size: 335px;
-
-$gray-1: rgba(50, 50, 50, 0.1);
-$gray-2: rgba(0, 0, 0, 0.2);
-$gray-3: rgba(0, 0, 0, 0.7);
-
-$box-shadow-inactive: 6px 6px 0px 0px $gray-1;
-$box-shadow-active: 3px 3px 0px 0px $gray-1;
+@import "variables";
 
 * {
   appearance: none;
@@ -31,152 +23,22 @@ body {
 
 @import "cleaner";
 
-.homeContainer {
-  width: 100vw;
-  height: 100vh;
-
-  .grid {
-    position: relative;
-    margin: 10vh auto;
-    width: 800px;
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    grid-auto-rows: minmax(150px, auto);
-
-    .pokemonCard {
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid transparent;
-      transition:
-        border-color 400ms ease,
-        box-shadow 250ms ease;
-      cursor: pointer;
-
-      img {
-        width: 60px;
-      }
-
-      &:hover {
-        border-color: rgba(0, 0, 0, 0.3);
-        box-shadow: $box-shadow-inactive;
-      }
-    }
-  }
-}
-
-.resultContainer {
-  display: flex;
-  width: 100vw;
-  padding-top: 10vh;
-
-  /* flex-direction: column;
-  align-items: center; */
-
-  justify-content: center;
-  align-items: flex-end;
-
-  .pokemonContainer {
-    border: 2px solid $gray-2;
-    width: $box-size;
-    height: $box-size;
-    box-shadow: $box-shadow-inactive;
-    margin: 1px 30px 1px 0;
-
-
-    .pokemon {
-      margin: 4px 0 0 -2px;
-      width: 0.4rem;
-      height: 0.4rem;
-    }
-  }
-
-  .buttonContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: $box-size;
-    margin: 30px 0 15px;
-    font-size: 18px;
-
-    span {
-      color: rgb(34, 182, 118);
-    }
-  }
-
-  textarea {
-    width: $box-size;
-    height: $box-size;
-
-    padding: 15px;
-    border: 2px solid $gray-2;
-    resize: none;
-    box-shadow: $box-shadow-inactive;
-    user-select: initial;
-
-    &:focus-visible {
-      outline: none;
-      border-color: $gray-3;
-    }
-  }
-}
-
-.button {
-  cursor: pointer;
-  font-family: 'VT323', monospace;
-  border: 2px solid $gray-2;
-  background: white;
-  padding: 10px;
-  box-shadow: $box-shadow-inactive;
-  letter-spacing: 1px;
-  transition: box-shadow 200ms ease,
-    background-color 400ms ease,
-    color 400ms ease;
-
-  &:hover {
-    box-shadow: $box-shadow-active;
-    background-color: #888;
-    color: white;
-  }
-
-  &:active {
-    background-color: #EEE;
-  }
-}
-
-.backButton {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-}
 
 .fade-enter {
-  position: absolute;
-
-
   opacity: 0;
-  transform: translate(0, 35px);
   z-index: 1;
 }
+
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transform: translate(0, 0);
-  transition-delay: 300ms;
-  transition: opacity 250ms ease-out, transform 300ms ease;
+  transition: opacity 250ms ease-out;
 }
+
 .fade-exit {
   opacity: 1;
-  transform: translate(0, 0);
 }
-.fade-exit.fade-exit-active {
-  position: relative;
-  width: auto;
-  height: auto;
 
+.fade-exit.fade-exit-active {
   opacity: 0;
-  transform: translate(0, 30px);
-  transition: opacity 250ms ease-out, transform 300ms ease;
+  transition: opacity 250ms ease-out;
 }

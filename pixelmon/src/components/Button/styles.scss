@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+.button {
+  cursor: pointer;
+  font-family: 'VT323', monospace;
+  border: 2px solid $gray-2;
+  background: white;
+  padding: 10px;
+  box-shadow: $box-shadow-inactive;
+  letter-spacing: 1px;
+  transition: box-shadow 200ms ease,
+    background-color 400ms ease,
+    color 400ms ease;
+
+  &:hover {
+    box-shadow: $box-shadow-active;
+    background-color: #888;
+    color: white;
+  }
+
+  &:active {
+    background-color: #EEE;
+  }
+}
+
+.backButton {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+}

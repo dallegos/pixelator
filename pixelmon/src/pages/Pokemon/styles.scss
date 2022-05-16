@@ -1,0 +1,57 @@
+@import "../../styles/variables";
+
+.resultContainer {
+  display: flex;
+  width: 100vw;
+  padding-top: 10vh;
+
+  /* flex-direction: column;
+  align-items: center; */
+
+  justify-content: center;
+  align-items: flex-end;
+
+  .pixeledImageContainer {
+    border: 2px solid $gray-2;
+    width: $box-size;
+    height: $box-size;
+    box-shadow: $box-shadow-inactive;
+    margin: 1px 20px 1px 0;
+
+
+    .pixeledImage {
+      margin: 4px 0 0 -2px;
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $box-size;
+    margin: 30px 0 15px;
+    font-size: 18px;
+
+    span {
+      color: rgb(34, 182, 118);
+    }
+  }
+
+  textarea {
+    width: $box-size;
+    height: $box-size;
+
+    padding: 15px;
+    border: 2px solid $gray-2;
+    resize: none;
+    box-shadow: $box-shadow-inactive;
+    user-select: initial;
+
+    &:focus-visible {
+      outline: none;
+      border-color: $gray-3;
+    }
+  }
+}

@@ -80,12 +80,12 @@ getList = () => {
 
   let text = "";
   let looper = 0;
-  
+
   let listColors = "\n$colors: (\n";
-  
+
   for (let index = 0; index < Object.entries(colors).length; index++) {
     const [hexa, number] = Object.entries(colors)[index];
-    
+
     text += `$color-${number}: ${hexa};\n`;
     listColors += `\t${number}: $color-${number},\n`;
   }
@@ -116,8 +116,7 @@ getList = () => {
   textarea.value = text;
 };
 
-
 button.addEventListener("click", (e) => {
   e.preventDefault();
   getList();
-})
+});
