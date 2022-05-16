@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pixelmon/static/css/main.30b41475.css",
+    "main.js": "/pixelmon/static/js/main.87a538b6.js",
+    "static/js/787.6d2dc2ad.chunk.js": "/pixelmon/static/js/787.6d2dc2ad.chunk.js",
+    "index.html": "/pixelmon/index.html",
+    "main.30b41475.css.map": "/pixelmon/static/css/main.30b41475.css.map",
+    "main.87a538b6.js.map": "/pixelmon/static/js/main.87a538b6.js.map",
+    "787.6d2dc2ad.chunk.js.map": "/pixelmon/static/js/787.6d2dc2ad.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30b41475.css",
+    "static/js/main.87a538b6.js"
+  ]
+}
