@@ -1,7 +1,12 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import Menu from "./components/Menu";
 import NotFound from "./pages/404";
 import Inicio from "./pages/Inicio";
 import Pokemon from "./pages/Pokemon";
@@ -16,7 +21,7 @@ const AnimatedRoutes = () => {
           <Route path="/" element={<Inicio />} />
           <Route path="/pokemon/:name" element={<Pokemon />} />
           <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

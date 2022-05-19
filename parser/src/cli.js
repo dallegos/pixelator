@@ -49,7 +49,7 @@ class ParseImage {
     image.onload = () => {
       this.canvas = createCanvas(
         image.width >= options.cols ? image.width : options.cols,
-        image.height >= options.rows ? image.height : options.rows
+        image.width >= options.cols ? image.width : options.cols
       );
       this.context = this.canvas.getContext("2d");
       this.context.imageSmoothingEnabled = false;
