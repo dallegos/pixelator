@@ -1,11 +1,23 @@
 
 .homeContainer {
-  width: 100vw;
+  //width: 100vw;
   height: 100vh;
+
+  .buttonsContainer {
+    width: 800px;
+    position: relative;
+    margin: 10vh auto;
+
+    .button {
+      margin-right: 25px;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+    }
+  }
 
   .grid {
     position: relative;
-    margin: 10vh auto;
+    margin: 0 auto;
     width: 800px;
 
     display: grid;

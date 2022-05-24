@@ -9,7 +9,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import NotFound from "./pages/404";
 import Inicio from "./pages/Inicio";
-import Pokemon from "./pages/Pokemon";
+import Pixelart from "./pages/Pixelart";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -18,8 +18,8 @@ const AnimatedRoutes = () => {
     <TransitionGroup component={null}>
       <CSSTransition key={location.key} classNames="fade" timeout={300}>
         <Routes location={location}>
-          <Route path="/" element={<Inicio />} />
-          <Route path="/pokemon/:name" element={<Pokemon />} />
+          <Route path="/:folder" element={<Inicio />}></Route>
+          <Route path="/:folder/:name" element={<Pixelart />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>

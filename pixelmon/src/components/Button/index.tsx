@@ -4,14 +4,14 @@ import "./styles.scss";
 
 type Props = {
   text: string;
-  className: string;
+  className?: string;
   onClick?: any;
 };
 
 const Button = ({ text, className, onClick }: Props) => {
   return (
     <button
-      className={className}
+      className={`button ${className}`}
       onClick={() => {
         if (onClick) {
           onClick();
@@ -25,7 +25,7 @@ const Button = ({ text, className, onClick }: Props) => {
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   onClick: PropTypes.func,
 };
 

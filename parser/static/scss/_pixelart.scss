@@ -1,0 +1,37 @@
+
+$grid: 56;
+
+$pixelsAmount: $grid * $grid;
+
+@function pixelator($list) {
+  $shadows: ();
+  $row: 0;
+  $col: 1;
+
+  @for $i from 1 through $pixelsAmount {
+    $shadows: append(
+      $shadows,
+      ($col * (0.4rem - 0.04rem)) ($row * (0.4rem - 0.04rem)) 0 var(--pixel-color-#{$i}),
+      'comma'
+    );
+
+    @if($i % $grid==0) {
+      $row: $row + 1;
+      $col: 0;
+    }
+
+    $col: $col+1;
+  }
+
+  @return $shadows;
+}
+
+@mixin pixelart($list) {
+  --clear-color: #ffffff;
+
+  @for $i from 1 through $pixelsAmount {
+    --pixel-color-#{$i}: var(--clear-color);
+  }
+
+  box-shadow: pixelator($list);
+}

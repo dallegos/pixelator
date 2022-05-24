@@ -1,31 +1,33 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { FileType } from "../../pages/Inicio";
 
 import "./styles.scss";
 
-type Props = { pokemon: string; index: number };
+type Props = { file: FileType; folder: string; index: number };
 
-const Card = ({ pokemon, index }: Props) => {
+const Card = ({ file, index, folder }: Props) => {
   const navigate = useNavigate();
 
   return (
     <div
       onClick={() => {
-        navigate(`/pokemon/${pokemon}`);
+        navigate(`/${folder}/${file.name}`);
       }}
       key={index}
-      className="pokemonCard"
+      className="card"
     >
       <img
-        alt={`${pokemon}`}
-        src={`${process.env.PUBLIC_URL}/img/${pokemon}.png`}
+        alt={`${file.name}`}
+        src={`${process.env.PUBLIC_URL}/img/${file.img}`}
       />
     </div>
   );
 };
 
 Card.propTypes = {
-  pokemon: PropTypes.string,
+  image: PropTypes.string,
+  folder: PropTypes.string,
   index: PropTypes.number,
 };
 

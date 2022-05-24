@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "outDir": "lib/",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "types": ["node", "ora"],
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"]
+}

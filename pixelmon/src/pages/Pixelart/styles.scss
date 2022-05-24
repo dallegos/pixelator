@@ -1,0 +1,67 @@
+@import "../../styles/variables";
+
+.resultContainer {
+  display: flex;
+  padding-top: 10vh;
+
+  /* flex-direction: column;
+  align-items: center; */
+
+  justify-content: center;
+  align-items: flex-end;
+
+  .pixeledImageContainer {
+    border: 2px solid $gray-2;
+    width: $box-size;
+    height: $box-size;
+    box-shadow: $box-shadow-inactive;
+    margin: 1px 20px 1px 0;
+    transition: border-color 400ms ease;
+
+    .pixeledImage {
+      margin: 4px 0 0 -2px;
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+
+    &:hover {
+      border-color: $gray-3;
+      cursor: none;
+    }
+
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $box-size;
+    margin: 30px 0 15px;
+    font-size: 18px;
+
+    span {
+      color: rgb(34, 182, 118);
+    }
+  }
+
+  textarea {
+    width: $box-size;
+    height: $box-size;
+
+    padding: 15px;
+    border: 2px solid $gray-2;
+    resize: none;
+    box-shadow: $box-shadow-inactive;
+    transition:
+      border-color 400ms ease,
+      box-shadow 250ms ease;
+    user-select: initial;
+
+    &:focus-visible,
+    &:hover {
+      outline: none;
+      border-color: $gray-3;
+      //box-shadow: $box-shadow-super-active;
+    }
+  }
+}
