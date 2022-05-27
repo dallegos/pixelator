@@ -48,8 +48,8 @@ const parseArguments = (rawArgs) => {
         help: args['--help'] || false,
         //FIXME: random names?
         //name: args['--name'] || `${nanoid(10)}`,
-        rows: args['--rows'] || 56,
-        cols: args['--cols'] || 56,
+        rows: args['--rows'] || 64,
+        cols: args['--cols'] || 64,
         output: args['--output-folder'] || '',
         cssOutputFolder: args['--css'] || '',
         imgOutputFolder: args['--img'] || '',
@@ -60,11 +60,16 @@ const parseArguments = (rawArgs) => {
 };
 exports.cli = (args) => __awaiter(void 0, void 0, void 0, function* () {
     let options = resolvePaths(parseArguments(args));
-    const structure = [];
+    const filesStructureName = 'filesStructure.js';
+    let structure = [];
+    const previousStructure = yield getStructureFromFile(path_1.default.join(options.jsonPath || '', filesStructureName));
+    if (previousStructure) {
+        structure = previousStructure;
+    }
     const spinner = ora_1.default({ text: '', spinner: 'simpleDotsScrolling' });
     // generate css skeleton
     yield generateCssSkeleton(options.cssPath || options.output);
-    const images = glob_1.default.sync(`${options.inputFolder}/**/*.+(png|jpg)`, {
+    const images = glob_1.default.sync(`${options.inputFolder}/**/*.+(png|PNG|jpg|JPG)`, {
         ignore: '**/node_modules/**.*',
     });
     if (!images.length) {
@@ -77,11 +82,17 @@ exports.cli = (args) => __awaiter(void 0, void 0, void 0, function* () {
     }
     // Generate json file
     if (options.jsonPath) {
-        const jsonFile = path_1.default.join(options.jsonPath, 'filesStructure.js');
+        const jsonFile = path_1.default.join(options.jsonPath, filesStructureName);
         const text = `const filesStructure = ${JSON.stringify(structure, null, '\t')};
     export default filesStructure;`;
         yield fs_extra_1.default.outputFile(jsonFile, text);
     }
+});
+const getStructureFromFile = (filesStructureName) => __awaiter(void 0, void 0, void 0, function* () {
+    let structure = yield fs_extra_1.default.readFile(filesStructureName, 'utf-8');
+    structure = structure.split('const filesStructure = ')[1];
+    structure = structure.split(';')[0];
+    return JSON.parse(structure);
 });
 const resolvePaths = (options) => {
     options.output_path = path_1.default.resolve(options.output);
@@ -137,14 +148,10 @@ class ProcessImage {
                     //this.spinner.text = `An error was occurred while loading : ${this.options.name}`;
                     return;
                 }
-                //this.spinner.text = 'Generating pixels';
                 yield this.process();
                 // if verbose
                 //const debugFileCreated = await this.createDebugFile();
-                //this.spinner.text = 'Generating file';
-                //await this.createFileFirstVersion();
                 yield this.createFileSecondVersion();
-                //this.spinner.text = 'Copying image';
                 yield this.copyImage();
                 yield this.finish();
                 if (!this.options.structure) {
@@ -157,7 +164,10 @@ class ProcessImage {
                     img: path_1.default.join(this.outputPath, this.outputImgFile),
                 };
                 if (folderIndex > -1) {
-                    this.options.structure[folderIndex].files.push(itemToPush);
+                    const itemIndex = this.options.structure[folderIndex].files.findIndex((file) => file.name === itemToPush.name);
+                    if (itemIndex === -1) {
+                        this.options.structure[folderIndex].files.push(itemToPush);
+                    }
                 }
                 else {
                     this.options.structure.push({
@@ -285,7 +295,7 @@ class ProcessImage {
         this.createFileSecondVersion = () => __awaiter(this, void 0, void 0, function* () {
             const textList = [];
             let looper = 0;
-            textList.push('.pixeledImage {');
+            textList.push(`.${this.options.name} {`);
             for (let index = 1; index < Object.entries(this.listColors).length; index++) {
                 let [number, hexa] = Object.entries(this.listColors)[index];
                 textList.push(`\t--pixel-color-${number}: ${hexa};`);

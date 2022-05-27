@@ -79,8 +79,8 @@ const parseArguments = (rawArgs: string[]) => {
     help: args['--help'] || false,
     //FIXME: random names?
     //name: args['--name'] || `${nanoid(10)}`,
-    rows: args['--rows'] || 56,
-    cols: args['--cols'] || 56,
+    rows: args['--rows'] || 64,
+    cols: args['--cols'] || 64,
 
     output: args['--output-folder'] || '',
 
@@ -97,14 +97,23 @@ const parseArguments = (rawArgs: string[]) => {
 
 export const cli = async (args: string[]) => {
   let options = resolvePaths(parseArguments(args));
-  const structure: FolderType[] = [];
+  const filesStructureName = 'filesStructure.js';
+  let structure: FolderType[] = [];
+
+  const previousStructure = await getStructureFromFile(
+    path.join(options.jsonPath || '', filesStructureName)
+  );
+
+  if (previousStructure) {
+    structure = previousStructure;
+  }
 
   const spinner = ora({ text: '', spinner: 'simpleDotsScrolling' });
 
   // generate css skeleton
   await generateCssSkeleton(options.cssPath || options.output);
 
-  const images = glob.sync(`${options.inputFolder}/**/*.+(png|jpg)`, {
+  const images = glob.sync(`${options.inputFolder}/**/*.+(png|PNG|jpg|JPG)`, {
     ignore: '**/node_modules/**.*',
   });
 
@@ -125,7 +134,7 @@ export const cli = async (args: string[]) => {
 
   // Generate json file
   if (options.jsonPath) {
-    const jsonFile = path.join(options.jsonPath, 'filesStructure.js');
+    const jsonFile = path.join(options.jsonPath, filesStructureName);
 
     const text = `const filesStructure = ${JSON.stringify(
       structure,
@@ -136,6 +145,17 @@ export const cli = async (args: string[]) => {
 
     await fs.outputFile(jsonFile, text);
   }
+};
+
+const getStructureFromFile = async (
+  filesStructureName: string
+): Promise<FolderType[]> => {
+  let structure = await fs.readFile(filesStructureName, 'utf-8');
+
+  structure = structure.split('const filesStructure = ')[1];
+  structure = structure.split(';')[0];
+
+  return JSON.parse(structure);
 };
 
 const resolvePaths = (options: ParseImageOptions): ParseImageOptions => {
@@ -223,19 +243,13 @@ class ProcessImage {
         return;
       }
 
-      //this.spinner.text = 'Generating pixels';
       await this.process();
 
       // if verbose
       //const debugFileCreated = await this.createDebugFile();
 
-      //this.spinner.text = 'Generating file';
-      //await this.createFileFirstVersion();
       await this.createFileSecondVersion();
-
-      //this.spinner.text = 'Copying image';
       await this.copyImage();
-
       await this.finish();
 
       if (!this.options.structure) {
@@ -253,7 +267,13 @@ class ProcessImage {
       };
 
       if (folderIndex > -1) {
-        this.options.structure[folderIndex].files.push(itemToPush);
+        const itemIndex = this.options.structure[folderIndex].files.findIndex(
+          (file: FileType): boolean => file.name === itemToPush.name
+        );
+
+        if (itemIndex === -1) {
+          this.options.structure[folderIndex].files.push(itemToPush);
+        }
       } else {
         this.options.structure.push({
           name: this.outputPath,
@@ -431,7 +451,7 @@ class ProcessImage {
     const textList = [];
     let looper = 0;
 
-    textList.push('.pixeledImage {');
+    textList.push(`.${this.options.name} {`);
 
     for (
       let index = 1;
