@@ -1,3 +1,6 @@
+:root {
+  --clear-color: #ffffff;
+}
 
 $grid: 64;
 
@@ -26,9 +29,8 @@ $pixelsAmount: $grid * $grid;
   @return $shadows;
 }
 
-@mixin pixelart($list) {
-  --clear-color: #ffffff;
 
+@mixin pixelart($list) {
   @for $i from 1 through $pixelsAmount {
     --pixel-color-#{$i}: var(--clear-color);
   }

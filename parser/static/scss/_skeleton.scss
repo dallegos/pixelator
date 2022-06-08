@@ -74,5 +74,7 @@ $skeleton:
 
 
 .pixeledImage {
+  width: 0.4rem;
+  height: 0.4rem;
   @include pixelart($skeleton);
 }

@@ -1,5 +1,10 @@
-.pixeledImage {
+:root {
   --clear-color: #ffffff;
+}
+
+.pixeledImage {
+  width: 0.4rem;
+  height: 0.4rem;
   --pixel-color-1: var(--clear-color);
   --pixel-color-2: var(--clear-color);
   --pixel-color-3: var(--clear-color);

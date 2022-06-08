@@ -12,7 +12,7 @@ const NotFound = () => {
         className="button backButton"
         text="Go back to index"
         onClick={() => {
-          navigate("/");
+          navigate("/", { replace: true });
         }}
       />
     </div>

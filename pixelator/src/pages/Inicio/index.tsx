@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import filesStructure from "../../filesStructure.js";
 
 import "./styles.scss";
@@ -21,11 +21,23 @@ const Inicio = () => {
   const { folder } = useParams<string>();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!folder) return;
+
+    const index = filesStructure.findIndex(
+      (innerFolder: FolderType): boolean => innerFolder.name === folder
+    );
+
+    if (index === -1) {
+      navigate("/404", { replace: true });
+    }
+  }, [navigate, folder]);
+
   const buttons = useMemo(() => {
     const ButtonsList = filesStructure.map((folder: FolderType, i: number) => (
       <Button
         text={folder.name}
-        key={i}
+        key={`button-${i}`}
         onClick={() => {
           navigate(`/${folder.name}`);
         }}
@@ -40,14 +52,14 @@ const Inicio = () => {
       (innerFolder) => innerFolder.name === folder
     );
 
-    if (index === -1) {
-      return <></>;
+    if (index === undefined || index === -1) {
+      return <h1>Selecciona una carpeta para comenzar.</h1>;
     }
 
     const directory = filesStructure[index];
 
     const cardsList = directory.files.map((file, i) => (
-      <Card key={i} file={file} folder={directory.name} index={i} />
+      <Card key={`card-${i}`} file={file} folder={directory.name} />
     ));
 
     return cardsList;

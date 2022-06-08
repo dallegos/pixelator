@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   BrowserRouter,
   Route,
@@ -13,12 +14,19 @@ import Pixelart from "./pages/Pixelart";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const nodeRef = useRef(null);
 
   return (
     <TransitionGroup component={null}>
-      <CSSTransition key={location.key} classNames="fade" timeout={300}>
+      <CSSTransition
+        key={location.key}
+        classNames="fade"
+        timeout={300}
+        nodeRef={nodeRef}
+      >
         <Routes location={location}>
-          <Route path="/:folder" element={<Inicio />}></Route>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/:folder" element={<Inicio />} />
           <Route path="/:folder/:name" element={<Pixelart />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />

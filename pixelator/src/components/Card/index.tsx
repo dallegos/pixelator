@@ -4,9 +4,9 @@ import { FileType } from "../../pages/Inicio";
 
 import "./styles.scss";
 
-type Props = { file: FileType; folder: string; index: number };
+type Props = { file: FileType; folder: string; index?: number };
 
-const Card = ({ file, index, folder }: Props) => {
+const Card = ({ file, folder }: Props) => {
   const navigate = useNavigate();
 
   return (
@@ -14,7 +14,6 @@ const Card = ({ file, index, folder }: Props) => {
       onClick={() => {
         navigate(`/${folder}/${file.name}`);
       }}
-      key={index}
       className="card"
     >
       <img

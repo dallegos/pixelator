@@ -6,38 +6,7 @@ import glob from 'glob';
 
 import ora from 'ora';
 import { Canvas, createCanvas, Image } from 'canvas';
-import { nanoid } from 'nanoid';
-
-type FolderType = {
-  name: string;
-  files: FileType[];
-};
-
-type FileType = {
-  name: string;
-  img: string;
-  css: string;
-};
-
-type ParseImageOptions = {
-  help?: boolean;
-  name?: string;
-  rows: number;
-  cols: number;
-  output: string;
-  cssOutputFolder: string;
-  imgOutputFolder: string;
-  jsonOutputFolder: string;
-  inputFolder: string;
-  inputFile?: string;
-  verbose?: boolean;
-  output_path?: string;
-  cssPath?: string;
-  imgPath?: string;
-  jsonPath?: string;
-  spinner?: ora.Ora;
-  structure?: FolderType[];
-};
+import { FolderType, ParseImageOptions, FileType } from './types';
 
 // Converts raw arguments into js object
 const parseArguments = (rawArgs: string[]) => {

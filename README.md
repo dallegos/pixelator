@@ -1,1 +1,1 @@
-Pixélmon
+Pixelator

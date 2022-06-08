@@ -1,55 +1,5 @@
 const filesStructure = [
 	{
-		"name": "podcast",
-		"files": [
-			{
-				"css": "podcast/birra.css",
-				"name": "birra",
-				"img": "podcast/birra.jpg"
-			},
-			{
-				"css": "podcast/jerry-2.css",
-				"name": "jerry-2",
-				"img": "podcast/jerry-2.jpg"
-			},
-			{
-				"css": "podcast/jerry-3.css",
-				"name": "jerry-3",
-				"img": "podcast/jerry-3.jpg"
-			},
-			{
-				"css": "podcast/jerry-4.css",
-				"name": "jerry-4",
-				"img": "podcast/jerry-4.jpg"
-			},
-			{
-				"css": "podcast/jerry-5.css",
-				"name": "jerry-5",
-				"img": "podcast/jerry-5.jpg"
-			},
-			{
-				"css": "podcast/jerry.css",
-				"name": "jerry",
-				"img": "podcast/jerry.jpg"
-			},
-			{
-				"css": "podcast/manolo.css",
-				"name": "manolo",
-				"img": "podcast/manolo.jpg"
-			},
-			{
-				"css": "podcast/muchachada.css",
-				"name": "muchachada",
-				"img": "podcast/muchachada.jpg"
-			},
-			{
-				"css": "podcast/pipi.css",
-				"name": "pipi",
-				"img": "podcast/pipi.jpg"
-			}
-		]
-	},
-	{
 		"name": "one-piece",
 		"files": [
 			{
@@ -276,46 +226,6 @@ const filesStructure = [
 				"css": "one-piece/zoro.css",
 				"name": "zoro",
 				"img": "one-piece/zoro.png"
-			}
-		]
-	},
-	{
-		"name": "pictures",
-		"files": [
-			{
-				"css": "pictures/agu1.css",
-				"name": "agu1",
-				"img": "pictures/agu1.jpg"
-			},
-			{
-				"css": "pictures/agu2.css",
-				"name": "agu2",
-				"img": "pictures/agu2.jpg"
-			},
-			{
-				"css": "pictures/agu3.css",
-				"name": "agu3",
-				"img": "pictures/agu3.jpg"
-			},
-			{
-				"css": "pictures/javi.css",
-				"name": "javi",
-				"img": "pictures/javi.jpg"
-			},
-			{
-				"css": "pictures/mate.css",
-				"name": "mate",
-				"img": "pictures/mate.jpg"
-			},
-			{
-				"css": "pictures/nono.css",
-				"name": "nono",
-				"img": "pictures/nono.jpg"
-			},
-			{
-				"css": "pictures/yuli.css",
-				"name": "yuli",
-				"img": "pictures/yuli.jpg"
 			}
 		]
 	},
@@ -1576,6 +1486,71 @@ const filesStructure = [
 				"css": "pokemon/zubat.css",
 				"name": "zubat",
 				"img": "pokemon/zubat.png"
+			}
+		]
+	},
+	{
+		"name": "endava",
+		"files": [
+			{
+				"css": "endava\\davidov.css",
+				"name": "davidov",
+				"img": "endava\\davidov.jpg"
+			},
+			{
+				"css": "endava\\fabbri.css",
+				"name": "fabbri",
+				"img": "endava\\fabbri.jpg"
+			},
+			{
+				"css": "endava\\teiserskis.css",
+				"name": "teiserskis",
+				"img": "endava\\teiserskis.jpg"
+			},
+			{
+				"css": "endava\\tejerina.css",
+				"name": "tejerina",
+				"img": "endava\\tejerina.jpg"
+			},
+			{
+				"css": "endava\\tramontana.css",
+				"name": "tramontana",
+				"img": "endava\\tramontana.jpg"
+			},
+			{
+				"css": "endava\\valderrama.css",
+				"name": "valderrama",
+				"img": "endava\\valderrama.jpg"
+			}
+		]
+	},
+	{
+		"name": "pictures",
+		"files": [
+			{
+				"css": "pictures\\desayuno.css",
+				"name": "desayuno",
+				"img": "pictures\\desayuno.jpg"
+			},
+			{
+				"css": "pictures\\javi.css",
+				"name": "javi",
+				"img": "pictures\\javi.jpg"
+			},
+			{
+				"css": "pictures\\mate.css",
+				"name": "mate",
+				"img": "pictures\\mate.jpg"
+			},
+			{
+				"css": "pictures\\nono.css",
+				"name": "nono",
+				"img": "pictures\\nono.jpg"
+			},
+			{
+				"css": "pictures\\yuli.css",
+				"name": "yuli",
+				"img": "pictures\\yuli.jpg"
 			}
 		]
 	}
